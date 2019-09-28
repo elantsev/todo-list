@@ -2,12 +2,19 @@ import React, { useState } from "react";
 import "./App.css";
 import Todos from "./Todos";
 import { initialTodos } from "./initialTodos";
+import Header from "./Header";
 
 function App() {
-  const [todos, setTodos] = useState(initialTodos);
+  let initialState = JSON.parse(localStorage.getItem("todos")) || initialTodos;
+  const [todos, setTodos] = useState(initialState);
+
+  const setTodosWithLocalStorage = todos => {
+    setTodos(todos);
+    localStorage.setItem("todos", JSON.stringify(todos));
+  };
 
   const isCompletedHandler = id => {
-    setTodos(
+    setTodosWithLocalStorage(
       todos.map(todo => {
         if (todo.id === id) {
           todo.completed = !todo.completed;
@@ -17,14 +24,15 @@ function App() {
     );
   };
   const todoDeleteHandler = id => {
-    setTodos(todos.filter(todo => todo.id !== id));
+    setTodosWithLocalStorage(todos.filter(todo => todo.id !== id));
+  };
+  const todoAddHandler = todo => {
+    setTodosWithLocalStorage([...todos, todo]);
   };
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Список дел</h1>
-      </header>
+      <Header todoAddHandler={todoAddHandler} />
       <main>
         <Todos
           todos={todos}
