@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Todos from "./Todos";
+import { initialTodos } from "./initialTodos";
 
 function App() {
+  const [todos, setTodos] = useState(initialTodos);
+
+  const isCompletedHandler = id => {
+    setTodos(
+      todos.map(todo => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      })
+    );
+  };
+  const todoDeleteHandler = id => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Список дел</h1>
       </header>
+      <main>
+        <Todos
+          todos={todos}
+          isCompletedHandler={isCompletedHandler}
+          todoDeleteHandler={todoDeleteHandler}
+        />
+      </main>
     </div>
   );
 }

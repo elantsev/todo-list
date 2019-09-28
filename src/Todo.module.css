@@ -1,0 +1,33 @@
+.todo {
+  display: flex;
+  align-items: center;
+  background: #f4f4f4;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 5px;
+  color: #333;
+  font-family: cursive;
+}
+
+.todo__completed {
+  text-decoration: line-through;
+  color: rgba(51, 51, 51, 0.466);
+}
+
+.todo:hover {
+  box-shadow: 0 0 4px #999;
+}
+
+.todo__checkbox:hover {
+  cursor: pointer;
+}
+
+.todo__checkbox {
+  width: 20px;
+}
+.todo__title {
+  width: 100%;
+}
+.todo__delete {
+  justify-items: flex-end;
+  width: 70px;
+}
