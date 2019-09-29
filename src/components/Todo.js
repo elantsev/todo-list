@@ -13,13 +13,6 @@ function Todo({
 
   return (
     <div className={s.todo}>
-      {/* <input
-        type="checkbox"
-        checked={completed}
-        className={s.todo__checkbox}
-        onChange={() => isCompletedHandler(id)}
-      /> */}
-
       <Checkbox
         checked={completed}
         className={s.todo__checkbox}

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import s from "./AddTodo.module.css";
 import { TextField } from "@material-ui/core";
+import { addTodo } from "../actions/todos";
+import { connect } from "react-redux";
 
 function AddTodo({ todoAddHandler }) {
   const [title, setTitle] = useState("");
@@ -45,4 +47,11 @@ function AddTodo({ todoAddHandler }) {
   );
 }
 
-export default AddTodo;
+const mapDispatchToProps = dispatch => ({
+  todoAddHandler: todo => dispatch(addTodo(todo))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(AddTodo);
