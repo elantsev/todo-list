@@ -6,6 +6,7 @@
   margin-bottom: 5px;
   color: #333;
   font-family: cursive;
+  padding: 0 10px;
 }
 
 .todo__completed {
@@ -26,8 +27,11 @@
 }
 .todo__title {
   width: 100%;
+  text-align: justify;
+  margin: 0;
+  padding: 10px;
 }
 .todo__delete {
   justify-items: flex-end;
-  width: 70px;
+  width: 120px;
 }

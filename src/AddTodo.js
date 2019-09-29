@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import Button from "@material-ui/core/Button";
+import s from "./AddTodo.module.css";
+import { TextField } from "@material-ui/core";
+
 function AddTodo({ todoAddHandler }) {
   const [title, setTitle] = useState("");
 
@@ -12,17 +16,31 @@ function AddTodo({ todoAddHandler }) {
 
   return (
     <form
+      className={s.addtodo}
       onSubmit={e => {
         onSubmitHandler(e);
       }}
     >
-      <input
-        type="text"
-        placeholder="введите новое дело"
-        value={title}
+      <TextField
+        id="outlined-dense-multiline"
+        label="Введите новое дело"
+        className={s.addtodo__title}
+        margin="dense"
+        variant="outlined"
+        multiline
+        rowsMax="10"
         onChange={e => setTitle(e.target.value)}
-      ></input>
-      <input type="submit" value="Добавить"></input>
+        value={title}
+      />
+
+      <Button
+        type="submit"
+        className={s.addtodo__submit}
+        variant="contained"
+        color="primary"
+      >
+        Добавить
+      </Button>
     </form>
   );
 }
